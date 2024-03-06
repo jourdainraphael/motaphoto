@@ -63,10 +63,9 @@ function active_contact_link($menu_item) {
     return $menu_item;
 }
 
-// wp_nav_menu( array('theme_location'=> 'main') );
-// wp_nav_menu( array('theme_location'=> 'footer') );
-// function register_my_menu() {
-//     register_nav_menu( array('main-menu' => 'Menu principal'));
-// }
-// add_action( 'after_setup_theme', 'register_my_menu' );
+
+
+
 ?>
+
+
