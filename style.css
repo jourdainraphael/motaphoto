@@ -1,3 +1,8 @@
+/*
+Theme Name: mothaphoto
+Author: Raphael J
+Version: 1.0
+*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
 /* Header */
@@ -113,8 +118,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 1148px;
-  max-height: 1830px !important;
+  max-width: 1176px;
   margin: auto;
   gap: 20px;
   z-index: 0;
@@ -130,4 +134,38 @@
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
+}
+.card img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  max-height: 100%;
+}
+
+.filter .card .fullscreen {
+  position: absolute;
+  top: 10px;
+  right: 17px;
+  width: 34px;
+  height: 34px;
+  z-index: 10;
+  cursor: pointer;
+  -o-object-fit: contain;
+     object-fit: contain;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.filter .card .lightbox-eye {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px;
+  height: 31.204px;
+  cursor: pointer;
+  -o-object-fit: contain;
+     object-fit: contain;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
 }/*# sourceMappingURL=style.css.map */

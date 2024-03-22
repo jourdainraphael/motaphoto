@@ -65,77 +65,20 @@ function active_contact_link($menu_item) {
     return $menu_item;
 }
 
-
-/*  récupérer la date   */
-// function add_date_support_to_photo_cpt() {
-//     add_post_type_support( 'photo', 'date' );
-//     }
-// add_action( 'init', 'add_date_support_to_photo_cpt' );
-
 /*  actions ajax   */
 
 function filter(){
     $format = $_POST['format'];
     $categorie = $_POST['categorie'];
-    $triDate = $_POST['triDate'];
-    $order = ($triDate == 'DESC') ? 'DESC' : 'ASC';
-    echo("<p>categories =". $categorie. "     format = " .$format . "       triDate=" .$triDate ."</p><br/>");
-
-function add_date_support_to_photo_cpt() {
-    add_post_type_support( 'photo', 'date' );}
-    add_action( 'init', 'add_date_support_to_photo_cpt' );
-
-
-  
-
+    echo("<p>categories =". $categorie. "     format = " .$format . "</p>");
 
     // On place les critères de la requête dans un Array
     $args = array(
         'post_type' => 'photo',
         'posts_per_page' => 8,
         'orderby' => 'date',
-        'order' => $order,
         'paged' => 1,
-        // 'meta_query' => array(
-        //     array(
-        //         'key' => 'annee',  // Your ACF field key
-        //         'compare' => 'EXISTS',
-        //     ),
-        // ),
-
-
-
-        // 'meta_key' => 'annee',
-        
-        // 'order' => '$triDate',
-       
     );
-    
-    if (!($format =="" && $categorie =="")){  // on doit applique un filtre car au moins une taxonomy a été selectionnée
-        if ($format == "" || $categorie == "")
-            $relation = "OR"; //si une des 2 taxonomies n'est pas choisie 
-        else
-            $relation = "AND"; // si les 2 taxonomies ont été choisies
-        // Ajout du filtre
-        $args['tax_query'] = 
-            array(
-                 'relation' => $relation,
-                    array(
-                        'taxonomy' => 'categorie',
-                        'field' => 'slug',
-                        'terms' => $categorie,
-                    ),
-                    array(
-                        'taxonomy' => 'format',
-                        'field' => 'slug',
-                        'terms' => $format,
-                    ),
-                );
-    }
-
-   
-
-  
     //On crée ensuite une instance de requête WP_Query basée sur les critères placés dans la variables $args
     $loop = new WP_Query($args);
 
@@ -150,9 +93,6 @@ function add_date_support_to_photo_cpt() {
         ?>
         <article class="card">
             <h3 class="title"><?php  echo the_title() ?></h3>
-             <span><?php  $custom = get_post_custom( get_the_ID() ); //on récupere les valeurs des champs personnalisée
-                    var_dump($custom['annee']);
-                    ?> </span>
             <span><?php echo the_terms(get_the_ID(), 'categorie', false); ?> </span>
             <img src="<?php echo $image_url; ?>" alt="<?php echo $image_alt; ?>"> 
         </article>

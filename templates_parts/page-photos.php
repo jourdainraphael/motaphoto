@@ -1,19 +1,11 @@
 
-<form action="" method="get" class="form-categories">
-  <select name="Categories" id="categories-select">
-    <option value="">Catégories</option>
-    <option value="mariage">Mariage</option>
-    <option value="reception">Réception</option>
-    <option value="concert">Concert</option>
-    <option value="television">Télévision</option>
-  </select>
-  <label for="formats-select">Format</label>
-  <select name="Formats" id="formats-select">
-    <option value="">Formats</option>
-    <option value="portrait">Portrait</option>
-    <option value="paysage">Paysage</option>
-  </select>
-</form>
+
+
+<?php 
+/// formulaure categories, format, date
+get_template_part('templates_parts/form','content'); 
+
+?> 
 
 <?php
 
@@ -21,8 +13,14 @@
 $args = array(
   'post_type' => 'photo',
   'posts_per_page' => 8,
+
   'orderby' => 'date',
   'paged' => 1,
+
+  // 'meta_key' => 'annee',
+  // 'orderby' => 'meta_value_num',
+  // 'order' => 'ASC',
+
 );
 //On crée ensuite une instance de requête WP_Query basée sur les critères placés dans la variables $args
 $loop = new WP_Query($args);?>
@@ -46,7 +44,7 @@ $loop = new WP_Query($args);?>
         <h3 class="title"><?php  echo the_title() ?></h3>
         <span><?php echo the_terms(get_the_ID(), 'categorie', false); ?> </span>
         <img src="<?php echo $image_url; ?>" alt="<?php echo $image_alt; ?>">        
-            <img
+            <!-- <img
 							class="fullscreen"
 							src="http://localhost:10034/wp-content/themes/twentytwentyone_child/assets/Icon_fullscreen.png"
 							alt="logo"
@@ -59,7 +57,7 @@ $loop = new WP_Query($args);?>
 							role="button"
 							aria-pressed="false"
 							src="http://localhost:10034/wp-content/themes/twentytwentyone_child/assets/Icon_eye.png"
-						/>
+						/> -->
 
       <?php 
     
